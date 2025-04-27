@@ -270,7 +270,7 @@ namespace CarRentalDataLayer
 
                         using (SqlDataReader reader = command.ExecuteReader())
                         {
-                            if (reader.HasRows)
+                            if (reader.Read())
                             {
                                result = true;
 
