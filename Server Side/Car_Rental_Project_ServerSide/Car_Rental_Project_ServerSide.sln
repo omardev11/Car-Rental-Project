@@ -1,0 +1,61 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35431.28
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Car_Rental_Project_ServerSide", "Car_Rental_Project_ServerSide.csproj", "{B20FD30F-94CE-4695-A172-8310F5C35B89}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarRentalBusinessLayer", "..\CarRentalBusinessLayer\CarRentalBusinessLayer.csproj", "{1928E1A0-7B43-4FCC-BFCD-B15BB7C36D7F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarRentalDataLayer", "..\CarRentalDataLayer\CarRentalDataLayer.csproj", "{3DE07C4E-CF0E-43E5-A4E8-F57DC120359D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KeePassNetStandard", "..\Keepaas\KeePassNetStandard-main\KeePassNetStandard-main\KeePassNetStandard\KeePassNetStandard.csproj", "{850B06E6-5FC2-4450-BD61-D6F19EC86859}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KeePassLib", "..\Keepaas\KeePassNetStandard-main\KeePassNetStandard-main\KeePassLib\KeePassLib.csproj", "{98EB4069-F998-4E0B-9F2B-5947E0E69E7A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Car Rental Project", "Car Rental Project", "{4D97487C-D245-439F-9C16-061BA68FFBC7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Keepass", "Keepass", "{26244407-1EE4-4224-810A-F546A0DF29EF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B20FD30F-94CE-4695-A172-8310F5C35B89}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B20FD30F-94CE-4695-A172-8310F5C35B89}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B20FD30F-94CE-4695-A172-8310F5C35B89}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B20FD30F-94CE-4695-A172-8310F5C35B89}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1928E1A0-7B43-4FCC-BFCD-B15BB7C36D7F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1928E1A0-7B43-4FCC-BFCD-B15BB7C36D7F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1928E1A0-7B43-4FCC-BFCD-B15BB7C36D7F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1928E1A0-7B43-4FCC-BFCD-B15BB7C36D7F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3DE07C4E-CF0E-43E5-A4E8-F57DC120359D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3DE07C4E-CF0E-43E5-A4E8-F57DC120359D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3DE07C4E-CF0E-43E5-A4E8-F57DC120359D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3DE07C4E-CF0E-43E5-A4E8-F57DC120359D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{850B06E6-5FC2-4450-BD61-D6F19EC86859}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{850B06E6-5FC2-4450-BD61-D6F19EC86859}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{850B06E6-5FC2-4450-BD61-D6F19EC86859}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{850B06E6-5FC2-4450-BD61-D6F19EC86859}.Release|Any CPU.Build.0 = Release|Any CPU
+		{98EB4069-F998-4E0B-9F2B-5947E0E69E7A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{98EB4069-F998-4E0B-9F2B-5947E0E69E7A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{98EB4069-F998-4E0B-9F2B-5947E0E69E7A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{98EB4069-F998-4E0B-9F2B-5947E0E69E7A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{B20FD30F-94CE-4695-A172-8310F5C35B89} = {4D97487C-D245-439F-9C16-061BA68FFBC7}
+		{1928E1A0-7B43-4FCC-BFCD-B15BB7C36D7F} = {4D97487C-D245-439F-9C16-061BA68FFBC7}
+		{3DE07C4E-CF0E-43E5-A4E8-F57DC120359D} = {4D97487C-D245-439F-9C16-061BA68FFBC7}
+		{850B06E6-5FC2-4450-BD61-D6F19EC86859} = {26244407-1EE4-4224-810A-F546A0DF29EF}
+		{98EB4069-F998-4E0B-9F2B-5947E0E69E7A} = {26244407-1EE4-4224-810A-F546A0DF29EF}
+		{26244407-1EE4-4224-810A-F546A0DF29EF} = {4D97487C-D245-439F-9C16-061BA68FFBC7}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BC33A80E-D943-46D1-A103-86627165417E}
+	EndGlobalSection
+EndGlobal
