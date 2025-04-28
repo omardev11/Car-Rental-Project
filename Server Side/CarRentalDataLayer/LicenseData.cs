@@ -6,11 +6,10 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static CarRentalDataLayer.Settings.DataLayerInterfaces;
 
 namespace CarRentalDataLayer
 {
-    public class LicenseData : ILicenseData
+    public class LicenseData : DataLayerInterfaces.ILicenseData
     {
 
         public int AddNewLicense(DTO.LicenseDTO NewLicense)

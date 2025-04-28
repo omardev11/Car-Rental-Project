@@ -2,7 +2,6 @@
 using CarRentalDataLayer.Settings;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using static CarRentalBusinessLayer.BusinessLayerInterfaces;
 
 namespace Car_Rental_Project_ServerSide.Controllers
 {
@@ -10,9 +9,9 @@ namespace Car_Rental_Project_ServerSide.Controllers
     [ApiController]
     public class LicenseController : ControllerBase
     {
-        private readonly ILicenseBusiness _LicenseBusiness;
+        private readonly BusinessLayerInterfaces.ILicenseBusiness _LicenseBusiness;
 
-        public LicenseController(ILicenseBusiness LicenseBusiness)
+        public LicenseController(BusinessLayerInterfaces.ILicenseBusiness LicenseBusiness)
         {
             _LicenseBusiness = LicenseBusiness;
         }

@@ -1,5 +1,4 @@
-﻿using static CarRentalDataLayer.Settings.DataLayerInterfaces;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,7 +9,7 @@ using System.Data;
 
 namespace CarRentalDataLayer
 {
-    public class UserData :IUserData
+    public class UserData : DataLayerInterfaces.IUserData
     {
         public int? AddNewUser(DTO.UserDTO User)
         {

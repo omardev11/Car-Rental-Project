@@ -6,11 +6,10 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static CarRentalDataLayer.Settings.DataLayerInterfaces;   
 
 namespace CarRentalDataLayer.Vehicle
 {
-    public class FuelTypeData : IFuelTypeData
+    public class FuelTypeData : DataLayerInterfaces.IFuelTypeData
     {
         public int AddNewFuelType(DTO.FuelTypeDTO FuelType)
         {

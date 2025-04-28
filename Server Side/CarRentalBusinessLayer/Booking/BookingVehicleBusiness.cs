@@ -4,24 +4,23 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static CarRentalDataLayer.Settings.DataLayerInterfaces;
-using static CarRentalBusinessLayer.BusinessLayerInterfaces;
 
 namespace CarRentalBusinessLayer.Booking
 {
-    public class BookingVehicleBusiness : IBookingVehicleBusiness
+    public class BookingVehicleBusiness : BusinessLayerInterfaces.IBookingVehicleBusiness
     {
-        private readonly IBookingVehicleData _BookingVehicleData;
-        private readonly IVehicleBusiness _VehicleBusiness;
-        private readonly IBookingStatusBusiness _BookingStatusBusiness;
+        private readonly DataLayerInterfaces.IBookingVehicleData _BookingVehicleData;
+        private readonly BusinessLayerInterfaces.IVehicleBusiness _VehicleBusiness;
+        private readonly BusinessLayerInterfaces.IBookingStatusBusiness _BookingStatusBusiness;
         
         public enum enMode { AddNewMode = 1, UpdateFromUserMode = 2, UpdateFromCustomerMode = 3 }
 
         public enMode Mode;
         public DTO.AddingBookingInfoDTO BookingInfo { get; set; }
 
-        public BookingVehicleBusiness(IBookingVehicleData BookingVehicleData,IVehicleBusiness vehiclebusiness,
-                                                                                         IBookingStatusBusiness bookingstatusbuiness)
+        public BookingVehicleBusiness(DataLayerInterfaces.IBookingVehicleData BookingVehicleData,
+                                      BusinessLayerInterfaces.IVehicleBusiness vehiclebusiness,
+                                      BusinessLayerInterfaces.IBookingStatusBusiness bookingstatusbuiness)
         {
             _BookingVehicleData = BookingVehicleData;
             _VehicleBusiness = vehiclebusiness;

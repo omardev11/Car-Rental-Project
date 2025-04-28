@@ -1,9 +1,9 @@
-﻿using CarRentalBusinessLayer.CardsAndPayments;
+﻿using CarRentalBusinessLayer;
+using CarRentalBusinessLayer.CardsAndPayments;
 using CarRentalDataLayer.Settings;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Cryptography.Xml;
-using static CarRentalBusinessLayer.BusinessLayerInterfaces;
 
 namespace Car_Rental_Project_ServerSide.Controllers.CardsAndPayments
 {
@@ -11,9 +11,9 @@ namespace Car_Rental_Project_ServerSide.Controllers.CardsAndPayments
     [ApiController]
     public class RentalTransactionController : ControllerBase
     {
-        private readonly IRentalTransactionBusiness _rentalTransactionBusiness;
+        private readonly BusinessLayerInterfaces.IRentalTransactionBusiness _rentalTransactionBusiness;
 
-        public RentalTransactionController(IRentalTransactionBusiness rentalTransactionBusiness)
+        public RentalTransactionController(BusinessLayerInterfaces.IRentalTransactionBusiness rentalTransactionBusiness)
         {
             _rentalTransactionBusiness = rentalTransactionBusiness;
         }

@@ -4,20 +4,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static CarRentalDataLayer.Settings.DataLayerInterfaces;
-using static CarRentalBusinessLayer.BusinessLayerInterfaces;
 
 namespace CarRentalBusinessLayer.CardsAndPayments
 {
-    public class RentalTransactionBusiness : IRentalTransactionBusiness
+    public class RentalTransactionBusiness : BusinessLayerInterfaces.IRentalTransactionBusiness
     {
-        private readonly IRentalTransactionData _rentalTransactionData;
+        private readonly DataLayerInterfaces.IRentalTransactionData _rentalTransactionData;
 
         public enum enMode { AddNewMode = 1, UpdateMode = 2 }
         public enMode Mode { get; set; }
         public DTO.RentalTransactionDTO RentalTransactionInfo { get; set; }
 
-        public RentalTransactionBusiness(IRentalTransactionData rentalTransactionData)
+        public RentalTransactionBusiness(DataLayerInterfaces.IRentalTransactionData rentalTransactionData)
         {
             _rentalTransactionData = rentalTransactionData;
             RentalTransactionInfo = new DTO.RentalTransactionDTO();

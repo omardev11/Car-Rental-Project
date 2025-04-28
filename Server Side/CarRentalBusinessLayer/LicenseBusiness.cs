@@ -6,19 +6,17 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static CarRentalBusinessLayer.BusinessLayerInterfaces;
-using static CarRentalDataLayer.Settings.DataLayerInterfaces;
 
 namespace CarRentalBusinessLayer
 {
-    public class LicenseBusiness : ILicenseBusiness
+    public class LicenseBusiness : BusinessLayerInterfaces.ILicenseBusiness
     {
-        private readonly ILicenseData _LicenseData;
+        private readonly DataLayerInterfaces.ILicenseData _LicenseData;
         public enum enMode { AddNewMode = 1, UpdateMode = 2 , DeleteMode = 3}
 
         public enMode Mode;
         public DTO.LicenseDTO LicenseInfo { get; set; }
-        public LicenseBusiness(ILicenseData licensedata)
+        public LicenseBusiness(DataLayerInterfaces.ILicenseData licensedata)
         {
             _LicenseData = licensedata;
             LicenseInfo = new DTO.LicenseDTO();

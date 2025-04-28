@@ -4,19 +4,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static CarRentalDataLayer.Settings.DataLayerInterfaces;
-using static CarRentalBusinessLayer.BusinessLayerInterfaces;
 
 namespace CarRentalBusinessLayer.CardsAndPayments
 {
-    public class TransactionTypeBusiness : ITransactionTypeBusiness
+    public class TransactionTypeBusiness : BusinessLayerInterfaces.ITransactionTypeBusiness
     {
-        private readonly ITransactionTypeData _transactionTypeData;
+        private readonly DataLayerInterfaces.ITransactionTypeData _transactionTypeData;
         public enum enMode { AddNewMode = 1, UpdateMode = 2 }
         public enMode Mode { get; set; }
         public DTO.TransactionTypeDTO TransactionTypeInfo { get; set; }
 
-        public TransactionTypeBusiness(ITransactionTypeData transactionTypeData)
+        public TransactionTypeBusiness(DataLayerInterfaces.ITransactionTypeData transactionTypeData)
         {
             _transactionTypeData = transactionTypeData;
             TransactionTypeInfo = new DTO.TransactionTypeDTO(0, new DTO.TransactionTypeDTO.TransactionTypeInfo());

@@ -6,11 +6,10 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static CarRentalDataLayer.Settings.DataLayerInterfaces;
 
 namespace CarRentalDataLayer.Booking
 {
-    public class BookingStatusData : IBookingStatusData
+    public class BookingStatusData : DataLayerInterfaces.IBookingStatusData
     {
         public int? AddNewBookingStatus(DTO.BookingStatusDTO bookingStatus)
         {

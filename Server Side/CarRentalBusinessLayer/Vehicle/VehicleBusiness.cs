@@ -4,25 +4,26 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static CarRentalBusinessLayer.BusinessLayerInterfaces;
-using static CarRentalDataLayer.Settings.DataLayerInterfaces;
 namespace CarRentalBusinessLayer.Vehicle
 {
-    public class VehicleBusiness : IVehicleBusiness 
+    public class VehicleBusiness : BusinessLayerInterfaces.IVehicleBusiness
     {
-        private readonly IVehicleData _VehicleData;
-        private readonly IVehicleStatusBusiness _VehicleStatusBusiness;
-        private readonly IVehicleCategoryBusiness _VehicleCategoryBusiness;
-        private readonly IFuelTypeBusiness _FuelTypeBusiness;
-        private readonly ILocationBusiness _LocationBusiness;
+        private readonly DataLayerInterfaces.IVehicleData _VehicleData;
+        private readonly BusinessLayerInterfaces.IVehicleStatusBusiness _VehicleStatusBusiness;
+        private readonly BusinessLayerInterfaces.IVehicleCategoryBusiness _VehicleCategoryBusiness;
+        private readonly BusinessLayerInterfaces.IFuelTypeBusiness _FuelTypeBusiness;
+        private readonly BusinessLayerInterfaces.ILocationBusiness _LocationBusiness;
 
         public enum enMode { AddNewMode = 1, UpdateMode = 2 }
 
         public enMode Mode;
         public DTO.UserViewVehicleDTO Vehicle { get; set; }
 
-        public VehicleBusiness(IVehicleData vehicledata,IVehicleStatusBusiness vehicleStatus,IVehicleCategoryBusiness vehicleCategory,
-                       IFuelTypeBusiness fuelType , ILocationBusiness location)
+        public VehicleBusiness(DataLayerInterfaces.IVehicleData vehicledata, 
+                               BusinessLayerInterfaces.IVehicleStatusBusiness vehicleStatus,
+                               BusinessLayerInterfaces.IVehicleCategoryBusiness vehicleCategory,
+                               BusinessLayerInterfaces.IFuelTypeBusiness fuelType , 
+                               BusinessLayerInterfaces.ILocationBusiness location)
         {
             _VehicleData = vehicledata;
             _VehicleStatusBusiness = vehicleStatus;

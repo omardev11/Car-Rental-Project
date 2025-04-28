@@ -4,21 +4,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static CarRentalDataLayer.Settings.DataLayerInterfaces;
-using static CarRentalBusinessLayer.BusinessLayerInterfaces;
 using CarRentalDataLayer.Settings;
 
 namespace CarRentalBusinessLayer
 {
-    public class CustomerBusiness : ICustomerBusiness
+    public class CustomerBusiness : BusinessLayerInterfaces.ICustomerBusiness
     {
-        private readonly ICustomerData _CustomerData;
+        private readonly DataLayerInterfaces.ICustomerData _CustomerData;
         public enum enMode { AddNewMode = 1, UpdateMode = 2 }
 
         public enMode Mode;
 
         public DTO.CustomerDTO Customer { get; set; }
-        public CustomerBusiness(ICustomerData CustomerData) 
+        public CustomerBusiness(DataLayerInterfaces.ICustomerData CustomerData) 
         {
             _CustomerData = CustomerData;
             Customer = new DTO.CustomerDTO();

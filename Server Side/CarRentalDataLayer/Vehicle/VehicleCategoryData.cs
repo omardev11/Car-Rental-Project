@@ -7,11 +7,10 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static CarRentalDataLayer.Settings.DataLayerInterfaces;
 
 namespace CarRentalDataLayer.Vehicle
 {
-    public class VehicleCategoryData : IVehicleCategoryData
+    public class VehicleCategoryData : DataLayerInterfaces.IVehicleCategoryData
     {
         public int AddNewVehicleCategory(DTO.VehicleCategoryDTO NewVehicleCategory)
         {

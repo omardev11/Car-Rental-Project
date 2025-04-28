@@ -7,11 +7,10 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static CarRentalDataLayer.Settings.DataLayerInterfaces;
 
 namespace CarRentalDataLayer.Vehicle
 {
-    public class VehicleStatusData : IVehicleStatusData
+    public class VehicleStatusData : DataLayerInterfaces.IVehicleStatusData
     {
         public int AddNewVehicleStatus(DTO.VehicleStatusDTO VehicleStatus)
         {

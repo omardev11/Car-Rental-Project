@@ -4,22 +4,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static CarRentalDataLayer.Settings.DataLayerInterfaces;
-using static CarRentalBusinessLayer.BusinessLayerInterfaces;
-using CarRentalDataLayer.Vehicle;
 
 namespace CarRentalBusinessLayer.Vehicle
 {
-    public class LocationBusiness : ILocationBusiness
+    public class LocationBusiness : BusinessLayerInterfaces.ILocationBusiness
     {
-        private readonly ILocationData _LocationData;
+        private readonly DataLayerInterfaces.ILocationData _LocationData;
 
         public enum enMode { AddNewMode = 1, UpdateMode = 2, DeleteMode = 3 }
 
         public enMode Mode;
         public DTO.LocationDTO LocationInfo { get; set; }
 
-        public LocationBusiness(ILocationData locationData)
+        public LocationBusiness(DataLayerInterfaces.ILocationData locationData)
         {
             _LocationData = locationData;
             LocationInfo = new DTO.LocationDTO();

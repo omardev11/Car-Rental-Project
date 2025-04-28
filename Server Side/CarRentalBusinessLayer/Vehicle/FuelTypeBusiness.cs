@@ -4,22 +4,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static CarRentalDataLayer.Settings.DataLayerInterfaces;
-using static CarRentalBusinessLayer.BusinessLayerInterfaces;
 using CarRentalDataLayer.Vehicle;
 
 namespace CarRentalBusinessLayer.Vehicle
 {
-    public class FuelTypeBusiness : IFuelTypeBusiness
+    public class FuelTypeBusiness : BusinessLayerInterfaces.IFuelTypeBusiness
     {
-        private readonly IFuelTypeData _FuelTypeData;
+        private readonly DataLayerInterfaces.IFuelTypeData _FuelTypeData;
 
         public enum enMode { AddNewMode = 1, UpdateMode = 2, DeleteMode = 3 }
 
         public enMode Mode;
         public DTO.FuelTypeDTO FuelTypeInfo { get; set; }
 
-        public FuelTypeBusiness(IFuelTypeData fuelTypeData)
+        public FuelTypeBusiness(DataLayerInterfaces.IFuelTypeData fuelTypeData)
         {
             _FuelTypeData = fuelTypeData;
             FuelTypeInfo = new DTO.FuelTypeDTO();

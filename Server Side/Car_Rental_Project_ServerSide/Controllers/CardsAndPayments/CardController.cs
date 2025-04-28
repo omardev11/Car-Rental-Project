@@ -3,7 +3,7 @@ using CarRentalBusinessLayer.Vehicle;
 using CarRentalDataLayer.Settings;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using static CarRentalBusinessLayer.BusinessLayerInterfaces;
+using CarRentalBusinessLayer;
 
 namespace Car_Rental_Project_ServerSide.Controllers.CardsAndPayments
 {
@@ -11,9 +11,9 @@ namespace Car_Rental_Project_ServerSide.Controllers.CardsAndPayments
     [ApiController]
     public class CardController : ControllerBase
     {
-        private readonly ICardBusiness _CardBusiness;
+        private readonly BusinessLayerInterfaces.ICardBusiness _CardBusiness;
 
-        public CardController(ICardBusiness cardbusiness)
+        public CardController(BusinessLayerInterfaces.ICardBusiness cardbusiness)
         {
             _CardBusiness = cardbusiness;
         }

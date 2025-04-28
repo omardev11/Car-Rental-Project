@@ -7,18 +7,16 @@ using System.Threading.Tasks;
 using System.Xml;
 using Microsoft.Data.SqlClient;
 using Konscious.Security.Cryptography;
-using static CarRentalDataLayer.Settings.DTO.CustomerDTO;
-using static CarRentalDataLayer.Settings.DataLayerInterfaces;
 using CarRentalDataLayer.Settings;
 
 
 namespace CarRentalDataLayer
 {
-    public class CustomerData : ICustomerData
+    public class CustomerData : DataLayerInterfaces.ICustomerData
     {
-        private readonly IPeopleData _PeopleData;
+        private readonly DataLayerInterfaces.IPeopleData _PeopleData;
 
-        public CustomerData(IPeopleData peopleData)
+        public CustomerData(DataLayerInterfaces.IPeopleData peopleData)
         {
             this._PeopleData = peopleData;
         }

@@ -1,8 +1,8 @@
-﻿using CarRentalBusinessLayer.CardsAndPayments;
+﻿using CarRentalBusinessLayer;
+using CarRentalBusinessLayer.CardsAndPayments;
 using CarRentalDataLayer.Settings;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using static CarRentalBusinessLayer.BusinessLayerInterfaces;
 
 namespace Car_Rental_Project_ServerSide.Controllers.CardsAndPayments
 {
@@ -10,9 +10,9 @@ namespace Car_Rental_Project_ServerSide.Controllers.CardsAndPayments
     [ApiController]
     public class PaymentStatusController : ControllerBase
     {
-        private readonly IPaymentStatusBusiness _paymentStatusBusiness;
+        private readonly BusinessLayerInterfaces.IPaymentStatusBusiness _paymentStatusBusiness;
 
-        public PaymentStatusController(IPaymentStatusBusiness paymentStatusBusiness)
+        public PaymentStatusController(BusinessLayerInterfaces.IPaymentStatusBusiness paymentStatusBusiness)
         {
             _paymentStatusBusiness = paymentStatusBusiness;
         }

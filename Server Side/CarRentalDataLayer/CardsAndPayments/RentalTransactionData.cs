@@ -6,11 +6,10 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static CarRentalDataLayer.Settings.DataLayerInterfaces;
 
 namespace CarRentalDataLayer.CardsAndPayments
 {
-    public class RentalTransactionData : IRentalTransactionData
+    public class RentalTransactionData : DataLayerInterfaces.IRentalTransactionData
     {
 
         public int? AddNewRentalTransaction(DTO.RentalTransactionDTO rentalTransaction)

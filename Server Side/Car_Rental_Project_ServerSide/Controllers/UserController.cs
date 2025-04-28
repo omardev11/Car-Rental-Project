@@ -2,7 +2,6 @@
 using CarRentalDataLayer.Settings;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using static CarRentalBusinessLayer.BusinessLayerInterfaces;
 
 namespace Car_Rental_Project_ServerSide.Controllers
 {
@@ -10,9 +9,9 @@ namespace Car_Rental_Project_ServerSide.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
-        private readonly IUserBusiness _UserBusiness;
+        private readonly BusinessLayerInterfaces.IUserBusiness _UserBusiness;
         
-        public UserController(IUserBusiness UserBusiness)
+        public UserController(BusinessLayerInterfaces.IUserBusiness UserBusiness)
         {
             _UserBusiness = UserBusiness;
         }

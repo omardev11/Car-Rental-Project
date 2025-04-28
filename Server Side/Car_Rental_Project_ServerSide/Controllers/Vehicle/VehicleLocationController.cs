@@ -1,8 +1,8 @@
-﻿using CarRentalBusinessLayer.Vehicle;
+﻿using CarRentalBusinessLayer;
+using CarRentalBusinessLayer.Vehicle;
 using CarRentalDataLayer.Settings;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using static CarRentalBusinessLayer.BusinessLayerInterfaces;
 
 namespace Car_Rental_Project_ServerSide.Controllers.Vehicle
 {
@@ -10,9 +10,9 @@ namespace Car_Rental_Project_ServerSide.Controllers.Vehicle
     [ApiController]
     public class VehicleLocationController : ControllerBase
     {
-        private readonly ILocationBusiness _locationBusiness;
+        private readonly BusinessLayerInterfaces.ILocationBusiness _locationBusiness;
 
-        public VehicleLocationController(ILocationBusiness locationBusiness)
+        public VehicleLocationController(BusinessLayerInterfaces.ILocationBusiness locationBusiness)
         {
             _locationBusiness = locationBusiness;
         }

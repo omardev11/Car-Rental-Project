@@ -5,11 +5,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static CarRentalDataLayer.Settings.DataLayerInterfaces;
 
 namespace CarRentalDataLayer
 {
-    public class PeopleData : IPeopleData
+    public class PeopleData : DataLayerInterfaces.IPeopleData
     {
         public DTO.PersonDTO.personInfo GetPersonInfoById(int personid)
         {

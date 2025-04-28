@@ -5,20 +5,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static CarRentalDataLayer.Settings.DataLayerInterfaces;
-using static CarRentalBusinessLayer.BusinessLayerInterfaces;
 
 namespace CarRentalBusinessLayer
 {
-    public class UserBusiness : IUserBusiness
+    public class UserBusiness : BusinessLayerInterfaces.IUserBusiness
     { 
-        private readonly IUserData _UserData;
+        private readonly DataLayerInterfaces.IUserData _UserData;
         public enum enMode { AddNewMode = 1, UpdateMode = 2 }
 
         public enMode Mode;
 
         public DTO.UserDTO _UserInfo { get; set; }
-        public UserBusiness(IUserData UserData)
+        public UserBusiness(DataLayerInterfaces.IUserData UserData)
         {
             _UserData = UserData;
             _UserInfo = new DTO.UserDTO();

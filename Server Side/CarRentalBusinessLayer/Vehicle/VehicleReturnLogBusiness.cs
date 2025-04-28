@@ -4,20 +4,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static CarRentalBusinessLayer.BusinessLayerInterfaces;
-using static CarRentalDataLayer.Settings.DataLayerInterfaces;
 
 namespace CarRentalBusinessLayer.Vehicle
 {
-    public class VehicleReturnLogBusiness : IVehicleReturnLogBusiness
+    public class VehicleReturnLogBusiness : BusinessLayerInterfaces.IVehicleReturnLogBusiness
     {
-        private readonly IVehicleReturnLogData _vehicleReturnLogData;
+        private readonly DataLayerInterfaces.IVehicleReturnLogData _vehicleReturnLogData;
 
         public enum enMode { AddNewMode = 1, UpdateMode = 2 }
         public enMode Mode { get; set; }
         public DTO.VehicleReturnLog VehicleReturnLogInfo { get; set; }
 
-        public VehicleReturnLogBusiness(IVehicleReturnLogData vehicleReturnLogData)
+        public VehicleReturnLogBusiness(DataLayerInterfaces.IVehicleReturnLogData vehicleReturnLogData)
         {
             _vehicleReturnLogData = vehicleReturnLogData;
             VehicleReturnLogInfo = new DTO.VehicleReturnLog();

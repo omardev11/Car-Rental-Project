@@ -6,11 +6,10 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static CarRentalDataLayer.Settings.DataLayerInterfaces;
 
 namespace CarRentalDataLayer.CardsAndPayments
 {
-    public class TransactionTypeData : ITransactionTypeData
+    public class TransactionTypeData : DataLayerInterfaces.ITransactionTypeData
     {
         public int? AddNewTransactionType(DTO.TransactionTypeDTO transactionType)
         {

@@ -4,8 +4,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static CarRentalDataLayer.Settings.DataLayerInterfaces;
-using static CarRentalBusinessLayer.BusinessLayerInterfaces;
 using System.Security.Cryptography;
 using Microsoft.Extensions.Configuration;
 using System.Dynamic;
@@ -19,9 +17,9 @@ using KeePassLib.Security;
 
 namespace CarRentalBusinessLayer.CardsAndPayments
 {
-    public class CardBusiness : ICardBusiness
+    public class CardBusiness : BusinessLayerInterfaces.ICardBusiness
     {
-        private readonly ICardData _CardData;
+        private readonly DataLayerInterfaces.ICardData _CardData;
         private PwDatabase database = new PwDatabase();
 
         private string _databasePath = "";
@@ -31,7 +29,7 @@ namespace CarRentalBusinessLayer.CardsAndPayments
         public enMode Mode; 
         public DTO.CardDTO _CardInfo { get; set; }
 
-        public CardBusiness(ICardData carddata,IConfiguration configuration)
+        public CardBusiness(DataLayerInterfaces.ICardData carddata,IConfiguration configuration)
         {
             _CardData = carddata;
             _CardInfo = new DTO.CardDTO();

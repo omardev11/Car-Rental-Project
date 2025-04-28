@@ -6,11 +6,10 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static CarRentalDataLayer.Settings.DataLayerInterfaces;
 
 namespace CarRentalDataLayer.Vehicle
 {
-    public class VehicleLocationData : ILocationData
+    public class VehicleLocationData : DataLayerInterfaces.ILocationData
     {
         public int AddNewLocation(DTO.LocationDTO NewLocation)
         {

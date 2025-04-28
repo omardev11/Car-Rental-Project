@@ -3,7 +3,7 @@ using CarRentalBusinessLayer.Vehicle;
 using CarRentalDataLayer.Settings;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using static CarRentalBusinessLayer.BusinessLayerInterfaces;
+using CarRentalBusinessLayer;
 
 namespace Car_Rental_Project_ServerSide.Controllers.Booking
 {
@@ -11,9 +11,9 @@ namespace Car_Rental_Project_ServerSide.Controllers.Booking
     [ApiController]
     public class BookingVehicleController : ControllerBase
     {
-        private readonly IBookingVehicleBusiness _BookingVehicleBusiness;
+        private readonly BusinessLayerInterfaces.IBookingVehicleBusiness _BookingVehicleBusiness;
         
-        public BookingVehicleController(IBookingVehicleBusiness bookingVehiclebusiness)
+        public BookingVehicleController(BusinessLayerInterfaces.IBookingVehicleBusiness bookingVehiclebusiness)
         {
             _BookingVehicleBusiness = bookingVehiclebusiness;
         }
