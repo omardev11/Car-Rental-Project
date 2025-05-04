@@ -3,6 +3,7 @@ using CarRentalBusinessLayer.Vehicle;
 using CarRentalDataLayer.Settings;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Runtime.InteropServices.ObjectiveC;
 
 namespace Car_Rental_Project_ServerSide.Controllers.Vehicle
 {
@@ -119,6 +120,7 @@ namespace Car_Rental_Project_ServerSide.Controllers.Vehicle
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public ActionResult<List<DTO.UserViewVehicleDTO>> GetVehicleInfo(
              [FromQuery] int? VehicleId,
              [FromQuery] string? VehicleName,
@@ -129,9 +131,25 @@ namespace Car_Rental_Project_ServerSide.Controllers.Vehicle
              [FromQuery] string? LicensePlate,
              [FromQuery] int? LocationId,
              [FromQuery] int? FuelTypeId,
-             [FromQuery] int? VehicleCategoryId
+             [FromQuery] int? VehicleCategoryId,
+             [FromQuery] decimal? StartPrice,
+             [FromQuery] decimal? EndPrice
             )
         {
+            if (EndPrice.HasValue && decimal.IsNegative(EndPrice.Value))
+            {
+                return BadRequest("The Prices Can not be Under 0.");
+            }
+            else
+            {
+                if (StartPrice.HasValue)
+                {
+                    if (decimal.IsNegative(StartPrice.Value))
+                        return BadRequest("The Prices Can not be Under 0.");
+                }
+                else
+                    StartPrice = 0;
+            }
 
             DTO.VehicleIdiesDTO vehicleIdiesDTO = new DTO.VehicleIdiesDTO();
             DTO.VehicleNamesDTO vehicleNamesDTO = new DTO.VehicleNamesDTO();
@@ -161,7 +179,7 @@ namespace Car_Rental_Project_ServerSide.Controllers.Vehicle
 
 
 
-            List<DTO.UserViewVehicleDTO> result = _VehicleBusiness.GetVehicleBy(UvehicleInfo);
+            List<DTO.UserViewVehicleDTO> result = _VehicleBusiness.GetVehicleBy(UvehicleInfo,StartPrice,EndPrice);
 
             try
             {
@@ -185,6 +203,7 @@ namespace Car_Rental_Project_ServerSide.Controllers.Vehicle
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public ActionResult<List<DTO.CustomerViewVehicleDTO>> GetVehicleByForCustomerView(
              [FromQuery] int? VehicleId,
              [FromQuery] string? VehicleName,
@@ -195,10 +214,25 @@ namespace Car_Rental_Project_ServerSide.Controllers.Vehicle
              [FromQuery] string? LicensePlate,
              [FromQuery] int? LocationId,
              [FromQuery] int? FuelTypeId,
-             [FromQuery] int? VehicleCategoryId
+             [FromQuery] int? VehicleCategoryId,
+              [FromQuery] decimal? StartPrice,
+             [FromQuery] decimal? EndPrice
             )
         {
-
+            if (EndPrice.HasValue && decimal.IsNegative(EndPrice.Value))
+            {
+                return BadRequest("The Prices Can not be Under 0.");
+            }
+            else
+            {
+                if (StartPrice.HasValue)
+                {
+                    if (decimal.IsNegative(StartPrice.Value))
+                        return BadRequest("The Prices Can not be Under 0.");
+                }
+                else
+                    StartPrice = 0;
+            }
             DTO.VehicleIdiesDTO vehicleIdiesDTO = new DTO.VehicleIdiesDTO();
             DTO.VehicleNamesDTO vehicleNamesDTO = new DTO.VehicleNamesDTO();
 
@@ -225,7 +259,7 @@ namespace Car_Rental_Project_ServerSide.Controllers.Vehicle
                 UvehicleInfo = new DTO.UserViewVehicleDTO(vehicleNamesDTO, vehicleIdiesDTO);
             }
 
-            List<DTO.CustomerViewVehicleDTO> result = _VehicleBusiness.GetVehicleByForCustomerView(UvehicleInfo);
+            List<DTO.CustomerViewVehicleDTO> result = _VehicleBusiness.GetVehicleByForCustomerView(UvehicleInfo, StartPrice, EndPrice);
 
             try
             {
@@ -245,35 +279,35 @@ namespace Car_Rental_Project_ServerSide.Controllers.Vehicle
         }
 
 
-        [HttpGet("VehiclePrice{StartPrice}/{EndPrice}ForCustomer/By", Name = "GetVehicleByPriceBetweenForCustomerView")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
-        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public ActionResult<List<DTO.CustomerViewVehicleDTO>> GetVehicleByPriceBetweenForCustomerView(decimal StartPrice, decimal EndPrice)
-        {
-            if (decimal.IsNegative(StartPrice) || decimal.IsNegative(EndPrice))
-            {
-                return BadRequest("The Prices Can not be Under 0.");
-            }
+        //[HttpGet("VehiclePrice/ForCustomer/By", Name = "GetVehicleByPriceBetweenForCustomerView")]
+        //[ProducesResponseType(StatusCodes.Status200OK)]
+        //[ProducesResponseType(StatusCodes.Status400BadRequest)]
+        //[ProducesResponseType(StatusCodes.Status404NotFound)]
+        //[ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        //public ActionResult<List<DTO.CustomerViewVehicleDTO>> GetVehicleByPriceBetweenForCustomerView(decimal StartPrice, decimal EndPrice)
+        //{
+        //    if (decimal.IsNegative(StartPrice) || decimal.IsNegative(EndPrice))
+        //    {
+        //        return BadRequest("The Prices Can not be Under 0.");
+        //    }
 
-            List<DTO.CustomerViewVehicleDTO> result = _VehicleBusiness.GetVehicleByPriceBetweenForCustomerView(StartPrice,EndPrice);
+        //    List<DTO.CustomerViewVehicleDTO> result = _VehicleBusiness.GetVehicleByPriceBetweenForCustomerView(StartPrice,EndPrice);
 
-            try
-            {
-                if (result != null)
-                {
-                    return Ok(result);
-                }
-                else
-                {
-                    return NotFound(new { message = "Vehicle not found." });
-                }
-            }
-            catch (Exception)
-            {
-                return StatusCode(500, new { message = "An unexpected error occurred." });
-            }
-        }
+        //    try
+        //    {
+        //        if (result != null)
+        //        {
+        //            return Ok(result);
+        //        }
+        //        else
+        //        {
+        //            return NotFound(new { message = "Vehicle not found." });
+        //        }
+        //    }
+        //    catch (Exception)
+        //    {
+        //        return StatusCode(500, new { message = "An unexpected error occurred." });
+        //    }
+        //}
     }
 }

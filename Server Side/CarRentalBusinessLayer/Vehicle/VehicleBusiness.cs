@@ -55,13 +55,14 @@ namespace CarRentalBusinessLayer.Vehicle
             return _VehicleData.DeleteVehicle(vehicleid);
         }
 
-        public List<DTO.UserViewVehicleDTO> GetVehicleBy(DTO.UserViewVehicleDTO vehicle)
+        public List<DTO.UserViewVehicleDTO> GetVehicleBy(DTO.UserViewVehicleDTO vehicle,decimal? StartPrice,decimal? EndPrice)
         {
-            return _VehicleData.GetVehicleby(vehicle);
+            return _VehicleData.GetVehicleby(vehicle,StartPrice,EndPrice);
         }
-        public List<DTO.CustomerViewVehicleDTO> GetVehicleByForCustomerView(DTO.UserViewVehicleDTO vehicle)
+        public List<DTO.CustomerViewVehicleDTO> GetVehicleByForCustomerView(DTO.UserViewVehicleDTO vehicle
+                                                                             , decimal? StartPrice, decimal? EndPrice)
         {
-            var userViewVehicle = _VehicleData.GetVehicleby(vehicle);
+            var userViewVehicle = _VehicleData.GetVehicleby(vehicle,StartPrice,EndPrice);
             List<DTO.CustomerViewVehicleDTO> CustomerViewVehicle = new List<DTO.CustomerViewVehicleDTO>();
             DTO.VehicleInfo VehicleDetailinfo;   
             foreach (var V in userViewVehicle)
@@ -70,29 +71,29 @@ namespace CarRentalBusinessLayer.Vehicle
                 VehicleDetailinfo.Status = _VehicleStatusBusiness.GetVehicleStatusInfoBy(V.VehiclePropertyIdies.VehicleStatusId,"").VehicleStatus;
                 VehicleDetailinfo.Category = _VehicleCategoryBusiness.GetVehicleCategoryInfoBy(V.VehiclePropertyIdies.VehicleCategoryId, "").CategoryInfo;
                 VehicleDetailinfo.FuelType = _FuelTypeBusiness.GetFuelTypeInfoBy(V.VehiclePropertyIdies.FuelTypeId, "").FuelTypeInfor;
-                VehicleDetailinfo.Location = _LocationBusiness.GetLocationInfoById(V.VehiclePropertyIdies.VehicleCategoryId.Value).LocationInfor;
+                VehicleDetailinfo.Location = _LocationBusiness.GetLocationInfoById(V.VehiclePropertyIdies.LocationId.Value).LocationInfor;
 
                 CustomerViewVehicle.Add(new DTO.CustomerViewVehicleDTO(V.VehicleInfo, VehicleDetailinfo));
             }
             return CustomerViewVehicle;
         }
-        public List<DTO.CustomerViewVehicleDTO> GetVehicleByPriceBetweenForCustomerView(decimal StartPrice,decimal EndPrice)
-        {
-            var userViewVehicle = _VehicleData.GetVehiclebyPriceBetween(StartPrice,EndPrice);
-            List<DTO.CustomerViewVehicleDTO> CustomerViewVehicle = new List<DTO.CustomerViewVehicleDTO>();
-            DTO.VehicleInfo VehicleDetailinfo;
-            foreach (var V in userViewVehicle)
-            {
-                VehicleDetailinfo = new DTO.VehicleInfo();
-                VehicleDetailinfo.Status = _VehicleStatusBusiness.GetVehicleStatusInfoBy(V.VehiclePropertyIdies.VehicleStatusId, "").VehicleStatus;
-                VehicleDetailinfo.Category = _VehicleCategoryBusiness.GetVehicleCategoryInfoBy(V.VehiclePropertyIdies.VehicleCategoryId, "").CategoryInfo;
-                VehicleDetailinfo.FuelType = _FuelTypeBusiness.GetFuelTypeInfoBy(V.VehiclePropertyIdies.FuelTypeId, "").FuelTypeInfor;
-                VehicleDetailinfo.Location = _LocationBusiness.GetLocationInfoById(V.VehiclePropertyIdies.VehicleCategoryId.Value).LocationInfor;
+        //public List<DTO.CustomerViewVehicleDTO> GetVehicleByPriceBetweenForCustomerView(decimal StartPrice,decimal EndPrice)
+        //{
+        //    var userViewVehicle = _VehicleData.GetVehiclebyPriceBetween(StartPrice,EndPrice);
+        //    List<DTO.CustomerViewVehicleDTO> CustomerViewVehicle = new List<DTO.CustomerViewVehicleDTO>();
+        //    DTO.VehicleInfo VehicleDetailinfo;
+        //    foreach (var V in userViewVehicle)
+        //    {
+        //        VehicleDetailinfo = new DTO.VehicleInfo();
+        //        VehicleDetailinfo.Status = _VehicleStatusBusiness.GetVehicleStatusInfoBy(V.VehiclePropertyIdies.VehicleStatusId, "").VehicleStatus;
+        //        VehicleDetailinfo.Category = _VehicleCategoryBusiness.GetVehicleCategoryInfoBy(V.VehiclePropertyIdies.VehicleCategoryId, "").CategoryInfo;
+        //        VehicleDetailinfo.FuelType = _FuelTypeBusiness.GetFuelTypeInfoBy(V.VehiclePropertyIdies.FuelTypeId, "").FuelTypeInfor;
+        //        VehicleDetailinfo.Location = _LocationBusiness.GetLocationInfoById(V.VehiclePropertyIdies.VehicleCategoryId.Value).LocationInfor;
 
-                CustomerViewVehicle.Add(new DTO.CustomerViewVehicleDTO(V.VehicleInfo, VehicleDetailinfo));
-            }
-            return CustomerViewVehicle;
-        }
+        //        CustomerViewVehicle.Add(new DTO.CustomerViewVehicleDTO(V.VehicleInfo, VehicleDetailinfo));
+        //    }
+        //    return CustomerViewVehicle;
+        //}
 
 
         public bool Save()

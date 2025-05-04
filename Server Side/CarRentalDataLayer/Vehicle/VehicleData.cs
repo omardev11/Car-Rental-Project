@@ -162,8 +162,7 @@ namespace CarRentalDataLayer.Vehicle
             return IsDeleted;
 
         }
-        
-        public List<DTO.UserViewVehicleDTO> GetVehicleby(DTO.UserViewVehicleDTO Vehicle)
+        public List<DTO.UserViewVehicleDTO> GetVehicleby(DTO.UserViewVehicleDTO Vehicle,decimal? StartPrice,decimal? EndPrice)
         {
             List<DTO.UserViewVehicleDTO> vehicles = new List<DTO.UserViewVehicleDTO>();
 
@@ -191,6 +190,12 @@ namespace CarRentalDataLayer.Vehicle
                         command.Parameters.Add("@FuelTypeId", SqlDbType.Int).Value = Vehicle.VehiclePropertyIdies.FuelTypeId ?? (object)DBNull.Value;
                         command.Parameters.Add("@VehicleCategoryId", SqlDbType.Int).Value = Vehicle.VehiclePropertyIdies.VehicleCategoryId ?? (object)DBNull.Value;
 
+                        if (StartPrice.HasValue && EndPrice.HasValue)
+                        {
+                            command.Parameters.Add("@StartPricePerDay", SqlDbType.Decimal).Value = StartPrice.Value;
+                            command.Parameters.Add("@EndPricePerDay", SqlDbType.Decimal).Value = EndPrice.Value;
+                        }
+                       
                     }
 
 
@@ -239,64 +244,65 @@ namespace CarRentalDataLayer.Vehicle
             return vehicles;
 
         }
-        public List<DTO.UserViewVehicleDTO> GetVehiclebyPriceBetween(decimal StartPrice,decimal EndPrice)
-        {
-            List<DTO.UserViewVehicleDTO> vehicles = new List<DTO.UserViewVehicleDTO>();
+        //public List<DTO.UserViewVehicleDTO> GetVehiclebyPriceBetween(decimal StartPrice,decimal EndPrice)
+        //{
+        //    List<DTO.UserViewVehicleDTO> vehicles = new List<DTO.UserViewVehicleDTO>();
 
 
-            using (SqlConnection connection = new SqlConnection(DataAccessSetting._connectionString))
-            {
-                using (SqlCommand command = new SqlCommand("usp_GetVehicleInfo", connection))
-                {
-                    command.CommandType = System.Data.CommandType.StoredProcedure;
+        //    using (SqlConnection connection = new SqlConnection(DataAccessSetting._connectionString))
+        //    {
+        //        using (SqlCommand command = new SqlCommand("usp_GetVehicleInfo", connection))
+        //        {
+        //            command.CommandType = System.Data.CommandType.StoredProcedure;
 
                   
 
-                    command.Parameters.AddWithValue("@StartPricePerDay", StartPrice);
-                    command.Parameters.AddWithValue("@EndPricePerDay",EndPrice);
+        //            command.Parameters.AddWithValue("@StartPricePerDay", StartPrice);
+        //            command.Parameters.AddWithValue("@EndPricePerDay",EndPrice);
 
 
 
 
 
-                    try
-                    {
-                        connection.Open();
+        //            try
+        //            {
+        //                connection.Open();
 
-                        using (SqlDataReader reader = command.ExecuteReader())
-                        {
-                            while (reader.Read())
-                            {
-                                DTO.VehicleNamesDTO vehicleNamesDTO = new DTO.VehicleNamesDTO();
-                                vehicleNamesDTO.VehicleName = reader["VehicleName"].ToString();
-                                vehicleNamesDTO.PricePerday = Convert.ToDecimal(reader["PricePerDay"]);
-                                vehicleNamesDTO.Make = reader["Make"].ToString();
-                                vehicleNamesDTO.Model = reader["Model"].ToString();
-                                vehicleNamesDTO.Year = Convert.ToInt32(reader["Year"]);
-                                vehicleNamesDTO.LicensePlate = reader["LicensePlate"].ToString();
+        //                using (SqlDataReader reader = command.ExecuteReader())
+        //                {
+        //                    while (reader.Read())
+        //                    {
+        //                        DTO.VehicleNamesDTO vehicleNamesDTO = new DTO.VehicleNamesDTO();
+        //                        vehicleNamesDTO.VehicleName = reader["VehicleName"].ToString();
+        //                        vehicleNamesDTO.PricePerday = Convert.ToDecimal(reader["PricePerDay"]);
+        //                        vehicleNamesDTO.Make = reader["Make"].ToString();
+        //                        vehicleNamesDTO.Model = reader["Model"].ToString();
+        //                        vehicleNamesDTO.Year = Convert.ToInt32(reader["Year"]);
+        //                        vehicleNamesDTO.LicensePlate = reader["LicensePlate"].ToString();
 
-                                DTO.VehicleIdiesDTO vehicleIdiesDTO = new DTO.VehicleIdiesDTO();
-                                vehicleIdiesDTO.VehicleId = Convert.ToInt32(reader["VehicleId"]);
-                                vehicleIdiesDTO.LocationId = Convert.ToInt32(reader["LocationId"]);
-                                vehicleIdiesDTO.FuelTypeId = Convert.ToInt32(reader["FuelTypeId"]);
-                                vehicleIdiesDTO.VehicleCategoryId = Convert.ToInt32(reader["VehicleCategoryId"]);
-                                vehicleIdiesDTO.VehicleStatusId = Convert.ToInt32(reader["StatusId"]);
+        //                        DTO.VehicleIdiesDTO vehicleIdiesDTO = new DTO.VehicleIdiesDTO();
+        //                        vehicleIdiesDTO.VehicleId = Convert.ToInt32(reader["VehicleId"]);
+        //                        vehicleIdiesDTO.LocationId = Convert.ToInt32(reader["LocationId"]);
+        //                        vehicleIdiesDTO.FuelTypeId = Convert.ToInt32(reader["FuelTypeId"]);
+        //                        vehicleIdiesDTO.VehicleCategoryId = Convert.ToInt32(reader["VehicleCategoryId"]);
+        //                        vehicleIdiesDTO.VehicleStatusId = Convert.ToInt32(reader["StatusId"]);
 
-                                vehicles.Add(new DTO.UserViewVehicleDTO(vehicleNamesDTO, vehicleIdiesDTO));
-                            }
-                        }
-                    }
-                    catch (Exception)
-                    {
-                        vehicles = new List<DTO.UserViewVehicleDTO>();
-                    }
-                }
+        //                        vehicles.Add(new DTO.UserViewVehicleDTO(vehicleNamesDTO, vehicleIdiesDTO));
+        //                    }
+        //                }
+        //            }
+        //            catch (Exception)
+        //            {
+        //                vehicles = new List<DTO.UserViewVehicleDTO>();
+        //            }
+        //        }
 
-            }
+        //    }
 
-            return vehicles;
+        //    return vehicles;
 
-        }
+        //}
 
+      
     }
 }

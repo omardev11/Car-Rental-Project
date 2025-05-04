@@ -15,6 +15,8 @@ namespace CarRentalBusinessLayer.Booking
         
         public enum enMode { AddNewMode = 1, UpdateFromUserMode = 2, UpdateFromCustomerMode = 3 }
 
+        public enum enBookingStatus {Cancelled = 3, AwaitingApproval = 4 }
+
         public enMode Mode;
         public DTO.AddingBookingInfoDTO BookingInfo { get; set; }
 
@@ -58,7 +60,7 @@ namespace CarRentalBusinessLayer.Booking
             bookingUserView.BookingId = bookingId;
 
             // Cancel Status Id is 3
-            bookingUserView.BookingStatusId = 3;
+            bookingUserView.BookingStatusId = (int)enBookingStatus.Cancelled;
             return _BookingVehicleData.UpdateBookingVehicleInfoFromUserOrAddingInitialCheckNotes(bookingUserView);
         }
 
@@ -69,7 +71,7 @@ namespace CarRentalBusinessLayer.Booking
             bookingUserView.BookingId = bookingId;
 
             // Awaiting Approval Status Id is 4
-            bookingUserView.BookingStatusId = 4;
+            bookingUserView.BookingStatusId = (int)enBookingStatus.AwaitingApproval;
             return _BookingVehicleData.UpdateBookingVehicleInfoFromUserOrAddingInitialCheckNotes(bookingUserView);
         }
 
@@ -80,7 +82,7 @@ namespace CarRentalBusinessLayer.Booking
             var vehicleObject = new DTO.UserViewVehicleDTO();
             vehicleObject.VehiclePropertyIdies.VehicleId = result.UserViewBookingInfo.VehicleId;
 
-            result.CustomerViewBookingInfo.VehicleInfo = _VehicleBusiness.GetVehicleByForCustomerView(vehicleObject)[0];
+            result.CustomerViewBookingInfo.VehicleInfo = _VehicleBusiness.GetVehicleByForCustomerView(vehicleObject,null,null)[0];
             result.CustomerViewBookingInfo.BookingStatusInfo = _BookingStatusBusiness.GetBookingStatusBy(
                                                                       result.UserViewBookingInfo.BookingStatusId,"").BookingStatusInfor;
 
@@ -99,7 +101,7 @@ namespace CarRentalBusinessLayer.Booking
 
                 var vehicleObject = new DTO.UserViewVehicleDTO();
                 vehicleObject.VehiclePropertyIdies.VehicleId = item.VehicleId;
-                var vehicles = _VehicleBusiness.GetVehicleBy(vehicleObject);
+                var vehicles = _VehicleBusiness.GetVehicleBy(vehicleObject,null,null);
 
                 if (vehicles.Count > 0 && vehicles != null)
                 {
@@ -126,7 +128,7 @@ namespace CarRentalBusinessLayer.Booking
 
                 var vehicleObject = new DTO.UserViewVehicleDTO();
                 vehicleObject.VehiclePropertyIdies.VehicleId = item.VehicleId;
-                var vehicles = _VehicleBusiness.GetVehicleBy(vehicleObject);
+                var vehicles = _VehicleBusiness.GetVehicleBy(vehicleObject, null, null);
 
                 if (vehicles.Count > 0 && vehicles != null)
                 {

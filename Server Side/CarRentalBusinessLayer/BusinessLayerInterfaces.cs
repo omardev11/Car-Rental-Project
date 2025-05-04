@@ -94,9 +94,9 @@ namespace CarRentalBusinessLayer
             public bool Save();
             public bool DeleteVehicle(int vehicleid);
             public void Initialize(DTO.UserViewVehicleDTO vehicle, VehicleBusiness.enMode Mode = VehicleBusiness.enMode.AddNewMode);
-            public List<DTO.UserViewVehicleDTO> GetVehicleBy(DTO.UserViewVehicleDTO vehicle);
-            public List<DTO.CustomerViewVehicleDTO> GetVehicleByForCustomerView(DTO.UserViewVehicleDTO vehicle);
-            public List<DTO.CustomerViewVehicleDTO> GetVehicleByPriceBetweenForCustomerView(decimal StartPrice, decimal EndPrice);
+            public List<DTO.UserViewVehicleDTO> GetVehicleBy(DTO.UserViewVehicleDTO vehicle,decimal? StartPrice,decimal? EndPrice);
+            public List<DTO.CustomerViewVehicleDTO> GetVehicleByForCustomerView(DTO.UserViewVehicleDTO vehicle ,
+                                                                          decimal? StartPrice, decimal? EndPrice);
 
         }
         public interface IBookingVehicleBusiness

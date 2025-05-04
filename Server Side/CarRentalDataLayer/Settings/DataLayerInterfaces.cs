@@ -87,8 +87,7 @@ namespace CarRentalDataLayer.Settings
             public int? AddNewVehicle(DTO.UserViewVehicleDTO Vehicle);
             public bool UpdateVehicle(DTO.UserViewVehicleDTO Vehicle);
             public bool DeleteVehicle(int VehicleId);
-            public List<DTO.UserViewVehicleDTO> GetVehicleby(DTO.UserViewVehicleDTO vehicle);
-            public List<DTO.UserViewVehicleDTO> GetVehiclebyPriceBetween(decimal StartPrice, decimal EndPrice);
+            public List<DTO.UserViewVehicleDTO> GetVehicleby(DTO.UserViewVehicleDTO vehicle, decimal? StartPrice, decimal? EndPrice);
 
         }
         public interface IBookingVehicleData
